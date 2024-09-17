@@ -24,24 +24,21 @@ pip install python-mcstatus
 ## Usage
 ### Java Status
 ```python
-from python_mcstatus import JavaStatusResponse, statusJava
+from python_mcstatus import JavaStatusResponse, JavaServer
 
-host = 'demo.mcstatus.io'
-port = 25565
-query = True
+Server = JavaServer("demo.mcstatus.io", port=25565, query=True)   # port is optional and defaults to 25565
 
-response: JavaStatusResponse = statusJava(host, port, query)  # port is optional and defaults to 25565
-# You can receive and error in the above when the response is not 200, this copies the functionality from the node library.
+response: JavaStatusResponse = Server.get_status()
+# You can receive an error in the above when the response is not 200, this copies the functionality from the node library.
 ```
 
 ### Bedrock Status
 ```python
 from python_mcstatus import BedrockStatusResponse, statusBedrock
 
-host = 'demo.mcstatus.io'
-port = 19132
+Server = BedrockServer('demo.mcstatus.io', port=19132)   # port argument is optional and defaults to 19132
 
-response: BedrockStatusResponse = statusBedrock(host, port)  # port argument is optional and defaults to 19132
+response: BedrockStatusResponse = Server.get_status()
 ```
 
 
